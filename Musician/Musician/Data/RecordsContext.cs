@@ -17,6 +17,11 @@ namespace MusicianRecords.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<MusicianToInstrument> MusicianToInstruments { get; set; }
         public DbSet<Musician> Musicians { get; set; }
+        public DbSet<MusicianToSong> MusicianToSongs { get; set; }
+        public DbSet<Song> Songs { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<MusicianToAlbum> MusicianToAlbums { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,9 +29,17 @@ namespace MusicianRecords.Data
             modelBuilder.Entity<Instrument>().ToTable("Instrument");
             modelBuilder.Entity<MusicianToInstrument>().ToTable("MusicianToInstrument");
             modelBuilder.Entity<Address>().ToTable("Address");
+            modelBuilder.Entity<MusicianToSong>().ToTable("MusicianToSong");
+            modelBuilder.Entity<Song>().ToTable("Song");
+            modelBuilder.Entity<Album>().ToTable("Album");
+            modelBuilder.Entity<MusicianToAlbum>().ToTable("MusicianToAlbum");
 
             modelBuilder.Entity<MusicianToInstrument>()
                 .HasKey(c => new { c.MusicianID, c.InstrumentID });
+            modelBuilder.Entity<MusicianToSong>()
+                .HasKey(c => new { c.MusicianID, c.SongID });
+            modelBuilder.Entity<MusicianToAlbum>()
+                .HasKey(c => new { c.MusicianID, c.AlbumID });
         }
     }
 }

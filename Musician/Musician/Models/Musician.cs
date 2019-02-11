@@ -15,6 +15,8 @@ namespace MusicianRecords.Models
 
         public Address Addresses { get; set; }
         public ICollection<MusicianToInstrument> MusicianToInstrument { get; set; }
+        public ICollection<MusicianToSong> MusicianToSong { get; set; }
+        public ICollection<MusicianToAlbum> MusicianToAlbum { get; set; }
 
     }
 }
