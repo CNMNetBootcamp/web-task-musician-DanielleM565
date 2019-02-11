@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Musician.Models
+namespace MusicianRecords.Models
 {
     public class Musician
     {
@@ -14,6 +14,7 @@ namespace Musician.Models
         public int PhoneNumber { get; set; }
 
         public Address Addresses { get; set; }
+        public ICollection<MusicianToInstrument> MusicianToInstrument { get; set; }
 
     }
 }

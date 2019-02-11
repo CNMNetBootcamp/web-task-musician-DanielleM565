@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Musician.Models
+namespace MusicianRecords.Models
 {
     public class Address
     {

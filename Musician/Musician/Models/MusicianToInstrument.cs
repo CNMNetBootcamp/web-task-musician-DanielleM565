@@ -1,6 +1,6 @@
-﻿namespace Musician.Models
+﻿namespace MusicianRecords.Models
 {
-    internal class MusicianToInstrument
+    public class MusicianToInstrument
     {
         public int MusicianID { get; set; }
         public int InstrumentID { get; set; }

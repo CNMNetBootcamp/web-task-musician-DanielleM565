@@ -1,6 +1,6 @@
 using System;
 
-namespace Musician.Models
+namespace MusicianRecords.Models
 {
     public class ErrorViewModel
     {

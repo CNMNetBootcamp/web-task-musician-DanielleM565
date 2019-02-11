@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Musician.Models
+namespace MusicianRecords.Models
 {
     public class Instrument
     {
@@ -8,6 +8,6 @@ namespace Musician.Models
         public string InstrumentName { get; set; }
         public string MusicKey { get; set; }
 
-        ICollection<MusicianToInstrument> MusicianToInstrument { get; set; }
+        public ICollection<MusicianToInstrument> MusicianToInstrument { get; set; }
     }
 }

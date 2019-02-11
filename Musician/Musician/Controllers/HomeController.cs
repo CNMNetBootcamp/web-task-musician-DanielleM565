@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Musician.Models;
+using MusicianRecords.Models;
 
-namespace Musician.Controllers
+namespace MusicianRecords.Controllers
 {
     public class HomeController : Controller
     {
