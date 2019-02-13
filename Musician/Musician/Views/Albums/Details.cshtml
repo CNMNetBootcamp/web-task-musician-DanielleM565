@@ -1,0 +1,54 @@
+﻿@model MusicianRecords.Models.Album
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Album</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Producer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Producer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AlbumName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CopyrightDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CopyrightDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Format)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Format)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AlbumIdnt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AlbumIdnt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Musician)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Musician.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
