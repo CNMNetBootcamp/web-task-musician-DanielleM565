@@ -36,7 +36,7 @@ namespace MusicianRecords.Controllers
 
             var album = await _context.Albums
                 .Include(a => a.Musician)
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (album == null)
             {
                 return NotFound();
@@ -48,7 +48,6 @@ namespace MusicianRecords.Controllers
         // GET: Albums/Create
         public IActionResult Create()
         {
-            ViewData["MusicianID"] = new SelectList(_context.Musicians, "Id", "Id");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace MusicianRecords.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MusicianID,Producer,AlbumName,CopyrightDate,Format,AlbumIdnt")] Album album)
+        public async Task<IActionResult> Create([Bind("Id,Producer,AlbumName,CopyrightDate,Format,AlbumIdnt")] Album album)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +64,6 @@ namespace MusicianRecords.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MusicianID"] = new SelectList(_context.Musicians, "Id", "Id", album.MusicianID);
             return View(album);
         }
 
@@ -77,12 +75,11 @@ namespace MusicianRecords.Controllers
                 return NotFound();
             }
 
-            var album = await _context.Albums.SingleOrDefaultAsync(m => m.Id == id);
+            var album = await _context.Albums.SingleOrDefaultAsync(m => m.ID == id);
             if (album == null)
             {
                 return NotFound();
             }
-            ViewData["MusicianID"] = new SelectList(_context.Musicians, "Id", "Id", album.MusicianID);
             return View(album);
         }
 
@@ -91,9 +88,9 @@ namespace MusicianRecords.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,MusicianID,Producer,AlbumName,CopyrightDate,Format,AlbumIdnt")] Album album)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Producer,AlbumName,CopyrightDate,Format,AlbumIdnt")] Album album)
         {
-            if (id != album.Id)
+            if (id != album.ID)
             {
                 return NotFound();
             }
@@ -107,7 +104,7 @@ namespace MusicianRecords.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AlbumExists(album.Id))
+                    if (!AlbumExists(album.ID))
                     {
                         return NotFound();
                     }
@@ -118,7 +115,6 @@ namespace MusicianRecords.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MusicianID"] = new SelectList(_context.Musicians, "Id", "Id", album.MusicianID);
             return View(album);
         }
 
@@ -132,7 +128,7 @@ namespace MusicianRecords.Controllers
 
             var album = await _context.Albums
                 .Include(a => a.Musician)
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (album == null)
             {
                 return NotFound();
@@ -146,7 +142,7 @@ namespace MusicianRecords.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var album = await _context.Albums.SingleOrDefaultAsync(m => m.Id == id);
+            var album = await _context.Albums.SingleOrDefaultAsync(m => m.ID == id);
             _context.Albums.Remove(album);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -154,7 +150,7 @@ namespace MusicianRecords.Controllers
 
         private bool AlbumExists(int id)
         {
-            return _context.Albums.Any(e => e.Id == id);
+            return _context.Albums.Any(e => e.ID == id);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace MusicianRecords.Controllers
             }
 
             var song = await _context.Songs
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (song == null)
             {
                 return NotFound();
@@ -73,7 +73,7 @@ namespace MusicianRecords.Controllers
                 return NotFound();
             }
 
-            var song = await _context.Songs.SingleOrDefaultAsync(m => m.Id == id);
+            var song = await _context.Songs.SingleOrDefaultAsync(m => m.ID == id);
             if (song == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace MusicianRecords.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,SongTitle,Author,MusicKey")] Song song)
         {
-            if (id != song.Id)
+            if (id != song.ID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace MusicianRecords.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SongExists(song.Id))
+                    if (!SongExists(song.ID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace MusicianRecords.Controllers
             }
 
             var song = await _context.Songs
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (song == null)
             {
                 return NotFound();
@@ -139,7 +139,7 @@ namespace MusicianRecords.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var song = await _context.Songs.SingleOrDefaultAsync(m => m.Id == id);
+            var song = await _context.Songs.SingleOrDefaultAsync(m => m.ID == id);
             _context.Songs.Remove(song);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -147,7 +147,7 @@ namespace MusicianRecords.Controllers
 
         private bool SongExists(int id)
         {
-            return _context.Songs.Any(e => e.Id == id);
+            return _context.Songs.Any(e => e.ID == id);
         }
     }
 }

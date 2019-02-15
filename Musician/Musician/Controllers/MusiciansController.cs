@@ -34,7 +34,15 @@ namespace MusicianRecords.Controllers
             }
 
             var musician = await _context.Musicians
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .Include(Y => Y.MusicianToSong)
+                    .ThenInclude(e => e.Song)
+                .Include(Y => Y.Album)
+                .Include(Y => Y.Addresses)
+                .Include(Y => Y.MusicianToInstrument)
+                    .ThenInclude(e => e.Instrument)
+                    .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+
             if (musician == null)
             {
                 return NotFound();
@@ -73,7 +81,7 @@ namespace MusicianRecords.Controllers
                 return NotFound();
             }
 
-            var musician = await _context.Musicians.SingleOrDefaultAsync(m => m.Id == id);
+            var musician = await _context.Musicians.SingleOrDefaultAsync(m => m.ID == id);
             if (musician == null)
             {
                 return NotFound();
@@ -88,7 +96,7 @@ namespace MusicianRecords.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,FirstMidName,LastName,SSN")] Musician musician)
         {
-            if (id != musician.Id)
+            if (id != musician.ID)
             {
                 return NotFound();
             }
@@ -102,7 +110,7 @@ namespace MusicianRecords.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MusicianExists(musician.Id))
+                    if (!MusicianExists(musician.ID))
                     {
                         return NotFound();
                     }
@@ -125,7 +133,7 @@ namespace MusicianRecords.Controllers
             }
 
             var musician = await _context.Musicians
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.ID == id);
             if (musician == null)
             {
                 return NotFound();
@@ -139,7 +147,7 @@ namespace MusicianRecords.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var musician = await _context.Musicians.SingleOrDefaultAsync(m => m.Id == id);
+            var musician = await _context.Musicians.SingleOrDefaultAsync(m => m.ID == id);
             _context.Musicians.Remove(musician);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -147,7 +155,7 @@ namespace MusicianRecords.Controllers
 
         private bool MusicianExists(int id)
         {
-            return _context.Musicians.Any(e => e.Id == id);
+            return _context.Musicians.Any(e => e.ID == id);
         }
     }
 }

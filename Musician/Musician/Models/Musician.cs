@@ -9,7 +9,7 @@ namespace MusicianRecords.Models
     public class Musician
     {
         //Each musician that records at Notown has an SSN, a name, an address, and a phone number. 
-        public int Id { get; set; }
+        public int ID { get; set; }
         [Display(Name = "First Name")]
         public string FirstMidName { get; set; }
         [Display(Name = "Last Name")]

@@ -7,13 +7,12 @@ namespace MusicianRecords.Models
     public class Album
     {
         //Each album recorded on the Notown label has a unique identification number, a title, a copyright date, a format (e.g., CD or MC), and an album identifier.
-        public int Id { get; set; }
-        public int MusicianID { get; set; }
+        public int ID { get; set; }
         public string Producer { get; set; }
         [Display(Name = "Album")]
         public string AlbumName { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Copyright Date")]
         public DateTime CopyrightDate { get; set; }
         public string Format { get; set; }

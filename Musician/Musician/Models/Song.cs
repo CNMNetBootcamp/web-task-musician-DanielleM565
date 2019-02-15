@@ -10,7 +10,7 @@ namespace MusicianRecords.Models
 
     public class Song
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         [Display(Name = "Title")]
         public string SongTitle { get; set; }
         public string Author { get; set; }
