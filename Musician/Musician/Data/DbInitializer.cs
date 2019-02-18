@@ -34,6 +34,7 @@ namespace MusicianRecords.Data
                 AddMusicians(context);
             }
 
+
             if (context.Addresses.Any())
             {
                 foreach (var address in context.Addresses)
